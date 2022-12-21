@@ -112,14 +112,14 @@ public class App extends JFrame {
                 }
             }
         });
-        btnSayHi.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (Person p : persons) {
-                    System.out.println(p);
-                }
-            }
-        });
+//        btnSayHi.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                for (Person p : persons) {
+//                    System.out.println(p);
+//                }
+//            }
+//        });
         btnClear.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
