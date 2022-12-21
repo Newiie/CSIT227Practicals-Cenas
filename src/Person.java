@@ -26,10 +26,25 @@ public abstract class  Person {
 abstract class Employee extends Person {
     private int months_worked;
     private double salary;
-    //salary / (12 / months_worked
-    public double thirteenthmonth() {
-        double months_work = 12/months_worked;
-        return 12 / months_work;
+
+    public int getMonths_worked() {
+        return this.months_worked;
+    }
+
+    public void setMonths_worked(int s) {
+        months_worked = s;
+    }
+
+    public double getSalary() {
+        return this.salary;
+    }
+
+    public void setSalary(double s) {
+        salary = s;
+    }
+    public double thirteenthmonth() throws Exception {
+        double months_work = 12 / months_worked;
+        return salary / months_work;
     }
 }
 class Clerk extends Employee {

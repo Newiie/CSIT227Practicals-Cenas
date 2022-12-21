@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -49,15 +51,12 @@ public class App extends JFrame {
                     int i = 1, flag = 0;
                     for (Person p : persons) {
                         if (i == load) {
-                            tfAge.setText(String.valueOf(p.getAge()));
-                            tfName.setText(p.getName());
                             flag = 1;
-                            if (p instanceof Clerk) {
-                                rbClerk.setSelected(true);
-                            } else if (p instanceof Customer) {
-                                rbCustomer.setSelected(true);
-                            } else if (p instanceof Manager) {
-                                rbManager.setSelected(true);
+                            if (p instanceof Employee) {
+                                Employee emp = (Employee) p;
+                                JOptionPane.showMessageDialog(null, String.format("Empolyee %s: %.2f reward", emp.getName(), emp.thirteenthmonth()), "Message", 1);
+                            } else {
+                                throw new Exception();
                             }
                         }
                         i++;
@@ -69,8 +68,10 @@ public class App extends JFrame {
                     JOptionPane.showMessageDialog(null, String.format("Age must be an Integer"), "Message", 1);
                 } catch (outOfReach x) {
                     JOptionPane.showMessageDialog(null, String.format("OutOfReach"), "Message", 1);
+                } catch (Exception x) {
+                    JOptionPane.showMessageDialog(null, String.format("Not an employee cant give reward"), "Message", 1);
                 }
-                JOptionPane.showMessageDialog(null, String.format("Age must be an Integer"), "Message", 1);
+
             }
         });
         btnLoad.addActionListener(new ActionListener() {
@@ -83,13 +84,20 @@ public class App extends JFrame {
                         if (i == load) {
                             tfAge.setText(String.valueOf(p.getAge()));
                             tfName.setText(p.getName());
+
                             flag = 1;
                             if (p instanceof Clerk) {
                                 rbClerk.setSelected(true);
+                                Employee emp = (Employee) p;
+                                tfMonths.setText(String.valueOf(emp.getMonths_worked()));
+                                tfSalary.setText(Double.toString(emp.getSalary()));
                             } else if (p instanceof Customer) {
                                 rbCustomer.setSelected(true);
                             } else if (p instanceof Manager) {
                                 rbManager.setSelected(true);
+                                Employee emp = (Employee) p;
+                                tfMonths.setText(String.valueOf(emp.getMonths_worked()));
+                                tfSalary.setText(Double.toString(emp.getSalary()));
                             }
                         }
                         i++;
@@ -98,7 +106,7 @@ public class App extends JFrame {
                     if (flag == 0)
                         throw new outOfReach("OutOFReach");
                 } catch (NumberFormatException x) {
-                    JOptionPane.showMessageDialog(null, String.format("Age must be an Integer"), "Message", 1);
+                    JOptionPane.showMessageDialog(null, String.format("Must use an Integer"), "Message", 1);
                 } catch (outOfReach x) {
                     JOptionPane.showMessageDialog(null, String.format("OutOfReach"), "Message", 1);
                 }
@@ -136,6 +144,8 @@ public class App extends JFrame {
                                     Clerk clerk = new Clerk();
                                     clerk.setName(tfName.getText());
                                     clerk.setAge(Integer.parseInt(tfAge.getText()));
+                                    clerk.setMonths_worked(Integer.parseInt(tfMonths.getText()));
+                                    clerk.setSalary(Double.parseDouble(tfSalary.getText()));
                                     String toBe = String.format("Clerk - %s (%d)\n", clerk.getName(), clerk.getAge());
                                     append(taPersons, toBe);
                                     persons.add(clerk);
@@ -156,6 +166,8 @@ public class App extends JFrame {
                                     Manager man = new Manager();
                                     man.setName(tfName.getText());
                                     man.setAge(Integer.parseInt(tfAge.getText()));
+                                    man.setMonths_worked(Integer.parseInt(tfMonths.getText()));
+                                    man.setSalary(Double.parseDouble(tfSalary.getText()));
                                     String manprint = String.format("Manager - %s (%d)\n", man.getName(), man.getAge());
                                     append(taPersons, manprint);
                                     persons.add(man);
@@ -171,8 +183,6 @@ public class App extends JFrame {
                 for (JTextField tf : fields) {
                     tf.setText("");
                 }
-
-
             }
         });
     }
@@ -185,6 +195,8 @@ public class App extends JFrame {
         frame.setSize(600, 400);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setVisible(true);
+
+
     }
 
     void append(JTextArea taPersons, String newText){
