@@ -127,6 +127,7 @@ public class App extends JFrame {
                     tf.setText("");
                 }
             }
+
         });
 
         btnSave.addActionListener(new ActionListener() {
