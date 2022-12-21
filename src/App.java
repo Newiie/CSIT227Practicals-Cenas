@@ -196,7 +196,6 @@ public class App extends JFrame {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setVisible(true);
 
-
     }
 
     void append(JTextArea taPersons, String newText){
