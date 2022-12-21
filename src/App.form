@@ -250,7 +250,9 @@
             <children>
               <component id="b6593" class="javax.swing.JTextArea" binding="taPersons">
                 <constraints/>
-                <properties/>
+                <properties>
+                  <editable value="false"/>
+                </properties>
               </component>
             </children>
           </scrollpane>
@@ -258,4 +260,12 @@
       </grid>
     </children>
   </grid>
+  <buttonGroups>
+    <group name="info">
+      <member id="84794"/>
+      <member id="84794"/>
+      <member id="52efa"/>
+      <member id="3cff8"/>
+    </group>
+  </buttonGroups>
 </form>
