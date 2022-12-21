@@ -120,15 +120,15 @@ public class App extends JFrame {
                 }
             }
         });
-        btnClear.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                for (JTextField tf : fields) {
-                    tf.setText("");
-                }
-            }
-
-        });
+//        btnClear.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                for (JTextField tf : fields) {
+//                    tf.setText("");
+//                }
+//            }
+//
+//        });
 
         btnSave.addActionListener(new ActionListener() {
             @Override
